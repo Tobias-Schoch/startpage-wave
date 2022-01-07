@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+    id 'org.sonarqube' version '3.3'
+    id 'com.avast.gradle.docker-compose' version '0.14.3'
+}
+
+group 'com.tom'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+}
+
+sonarqube {
+    properties {
+        property 'sonar.host.url', 'http://localhost:9000'
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
+}
+test.finalizedBy jacocoTestReport
+tasks.named('sonarqube').configure {
+    dependsOn test
+}
