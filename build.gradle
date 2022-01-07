@@ -1,5 +1,5 @@
 plugins {
-    id 'php'
+    id 'java'
     id 'jacoco'
     id 'org.sonarqube' version '3.3'
     id 'com.avast.gradle.docker-compose' version '0.14.3'
